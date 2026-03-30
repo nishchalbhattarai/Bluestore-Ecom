@@ -1,0 +1,138 @@
+:root {
+    --main-bg: #f0f8ff;
+    /* Light Alice Blue */
+    --card-bg: #ffffff;
+    --primary-blue: #0077b6;
+    --text-main: #2b2d42;
+    --text-muted: #6c757d;
+    --transition-speed: 0.3s;
+    --border-radius: 16px;
+}
+
+/* 1. Main Layout Container */
+.content-area {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+/* 2. Dynamic Hero Section */
+.hero {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #caf0f8 0%, #90e0ef 100%);
+    border-radius: var(--border-radius);
+    padding: 80px 40px;
+    text-align: center;
+    transition: transform var(--transition-speed);
+}
+
+.hero:hover {
+    transform: translateY(-5px);
+    /* Subtle lift on hover */
+}
+
+.hero h2 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    /* Dynamic font size based on screen width */
+    color: var(--primary-blue);
+    margin-bottom: 15px;
+}
+
+/* 3. Responsive Product Grid */
+.product-grid {
+    display: grid;
+    /* Automatically fits as many columns as possible (min 280px each) */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+/* 4. The Interactive Product Card */
+.product-card {
+    background: var(--card-white);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    border: 1px solid rgba(0, 119, 182, 0.1);
+    transition: all var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product-card:hover {
+    background: white;
+    box-shadow: 0 20px 40px rgba(0, 119, 182, 0.15);
+    transform: scale(1.02);
+    /* Pop-out effect */
+    border-color: var(--primary-blue);
+}
+
+/* Image Placeholder Animation */
+.image-placeholder {
+    width: 100%;
+    aspect-ratio: 1/1;
+    background: #e9ecef;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    transition: background var(--transition-speed);
+}
+
+.product-card:hover .image-placeholder {
+    background: #caf0f8;
+    /* Changes color when card is hovered */
+}
+
+/* 5. Dynamic "Add to Cart" Button */
+.add-btn {
+    margin-top: 20px;
+    padding: 12px;
+    border: none;
+    background: var(--primary-blue);
+    color: white;
+    font-weight: 700;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: filter 0.2s, transform 0.1s;
+}
+
+.add-btn:hover {
+    filter: brightness(1.1);
+}
+
+.add-btn:active {
+    transform: scale(0.95);
+    /* Click feedback */
+}
+
+/* 6. Section Titles with Underline Animation */
+.section-title {
+    font-size: 1.8rem;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 30px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 40px;
+    height: 4px;
+    background: var(--primary-blue);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+.product-section:hover .section-title::after {
+    width: 100%;
+    /* Line grows when you hover the section */
+}
