@@ -1,16 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
-import ProductBody from './Pages/productBody';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './Pages/Header';
+import ProductBody from './Pages/productBody';
 import Footer from './Pages/Footer';
+import Login from './Pages/Login';
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <ProductBody />
-      <Footer />
-    </div>
+    <Router> {/* The Router MUST wrap the Header */}
+      <div className="App">
+        <Header />
+
+        <Routes>
+          <Route path="/" element={<ProductBody />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+
+        <Footer />
+      </div>
+    </Router>
   );
 }
 

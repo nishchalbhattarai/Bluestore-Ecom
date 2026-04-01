@@ -1,37 +1,43 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const ProductBody = () => {
-    const [products] = useState([
-        { id: 1, name: "Sky Blue Watch", price: 120.00 },
-        { id: 2, name: "Azure Headphones", price: 85.00 },
-        { id: 3, name: "Cloud Sneakers", price: 150.00 },
-        { id: 4, name: "Ocean Backpack", price: 45.00 },
-    ]);
+    // SHORTCUT: Generate 12 products automatically
+    // This creates an array [1, 2, 3... 12] and builds an object for each
+    const products = Array.from({ length: 20 }, (_, i) => {
+        const id = i + 1;
+        return {
+            id: id,
+            name: `BlueStore Item #${id}`,
+            price: `$${(Math.random() * 100 + 20).toFixed(2)}`, // Random price between $20-$120
+            category: id % 3 === 0 ? "Tech" : id % 2 === 0 ? "Apparel" : "Accessories"
+        };
+    });
 
     return (
-        <main className="content-area">
-            {/* Hero Section */}
-            <section className="hero">
-                <h2>Your Style, Reimagined</h2>
-                <p>Explore our premium light-blue collection.</p>
-                <button className="hero-btn">Explore Now</button>
-            </section>
-
-            {/* Product Section */}
-            <section className="product-section">
-                <h3>Featured Products</h3>
-                <div className="product-grid">
-                    {products.map((product) => (
-                        <article key={product.id} className="product-card">
-                            <div className="image-placeholder">Product Image</div>
-                            <h4>{product.name}</h4>
-                            <p>${product.price.toFixed(2)}</p>
-                            <button className="add-btn">Add to Cart</button>
-                        </article>
-                    ))}
-                </div>
-            </section>
-        </main>
+        <section className="product-section">
+            <div className="product-grid">
+                {products.map((product) => (
+                    <div key={product.id} className="product-card">
+                        <div className="product-image">
+                            {/* Using product.id in the URL ensures each card gets a DIFFERENT random image */}
+                            <img
+                                src={`https://picsum.photos/seed/${product.id + 10}/400/300`}
+                                alt={product.name}
+                                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                            />
+                        </div>
+                        <div className="product-info">
+                            <span className="category-tag">{product.category}</span>
+                            <h3>{product.name}</h3>
+                            <p className="product-price">{product.price}</p>
+                            <button className="btn-primary" style={{ marginTop: '10px', width: '100%' }}>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </section>
     );
 };
 
