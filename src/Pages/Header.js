@@ -1,7 +1,5 @@
-import React from 'react';
+
 import { Link, useLocation } from 'react-router-dom';
-import MainBody from './MainBody';
-import About from './About';
 const Header = () => {
     const location = useLocation();
     // Mock cart count - in a real app, this comes from state/context
