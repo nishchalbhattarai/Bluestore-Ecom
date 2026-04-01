@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-
+import MainBody from './MainBody';
 const Header = () => {
     const location = useLocation();
     // Mock cart count - in a real app, this comes from state/context
@@ -38,7 +38,7 @@ const Header = () => {
                     </Link>
                     <Link to="/shop" className="nav-item">Shop</Link>
                     <div className="dropdown">
-                        <span className="nav-item">Categories ▾</span>
+                        <span className="nav-item">About Us</span>
                     </div>
                 </nav>
 
